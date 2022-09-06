@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('myowntutor:server');
 var http = require('http');
+// const sequelize = require('Sequelize');
 
 /**
  * Get port from environment and store in Express.
@@ -23,9 +24,17 @@ var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
+ * connect to database.
  */
 
-server.listen(port);
+const db = require("../models");
+db.sequelize.sync()
+    .then(()=>{
+      server.listen(port);
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
 server.on('error', onError);
 server.on('listening', onListening);
 
