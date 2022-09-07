@@ -37,12 +37,12 @@ module.exports = (sequelize, DataTypes) =>{
             len:[7,100],
             isEmail:true,
         },
-        // permission_id:{
-        //     //fk in permission table.
-        //   type:DataTypes.INTEGER,
-        //   allowNull:false,
-        //   required:true,
-        // },
+        permission_id:{
+            //fk in permission table.
+          type:DataTypes.INTEGER,
+          allowNull:false,
+          required:true,
+        },
         updated_at:{
             type:DataTypes.DATE,
         },
