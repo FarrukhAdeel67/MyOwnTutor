@@ -8,7 +8,7 @@ const config  = require('../config/config');
  const db = {};
 //console.log(config);
 // const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
-    const sequelize = new Sequelize("myowntutor", "root", "", {
+    const sequelize = new Sequelize("myowntutor", "root", "pps993icp956", {
   dialect:'mysql',
   host:"localhost",
 });
