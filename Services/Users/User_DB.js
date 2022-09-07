@@ -1,7 +1,7 @@
 const db = require("../../models");
 /*
 Functions checks if username already exists on database.
-Returns ture if username already taken, false otherwise,
+Returns user if username already taken, false otherwise,
  */
 async  function UsernameExists(username){
     if(username===null || username=== undefined){
@@ -14,9 +14,26 @@ async  function UsernameExists(username){
     if(user){
         return user;
     }
-    return false;
+    return null;
 }
+// Function checks if email already exists in database
+//returns user if email is already taken ,false otherwise,
+async function  EmailExists(email){
+    if(email===null || email=== undefined){
+        throw new Error('No Username was passed as an argument')
+
+    }
+    const user = await db.user.findOne({
+        where:{email},
+    })
+    if(user){
+        return user;
+    }
+    return null;
+}
+
 
 module.exports = {
     UsernameExists,
+    EmailExists,
 }
