@@ -3,8 +3,10 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("../Helpers/asyncHandler");
 const validate = require("validate.js");
+//services
+const User = require('../Services/Users/User_Service');
 
-router.post('/', asyncHandler((req, res)=>{
+router.post('/', asyncHandler(async (req, res)=>{
     const constraints ={
         first_name:{
             presence:true,
@@ -32,6 +34,17 @@ router.post('/', asyncHandler((req, res)=>{
     const validation = validate({first_name, last_name, username, password,email}, constraints);
     if(validation){
        return  res.status(400).json({error:validation});
+    }
+    //forward user service
+    const found_user = await User.ValidateUserExists(username, email);
+    if(found_user) {
+        if(username===found_user.username){
+            return res.status(400).json({error: `Username ${username} is already taken`})
+        }
+        if(email===found_user.email){
+            return res.status(400).json({error: ` email ${email} is already taken`})
+        }
+
     }
 }));
 module.exports = router;
