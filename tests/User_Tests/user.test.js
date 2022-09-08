@@ -15,7 +15,7 @@ describe("User Test Suite",()=>{
     })
     it('should see if the user already exists on an existent email', async  ()=>{
         const  test = await CreateDummyUser();
-        const user = await ValidateUserExists('Farrukh Adeel','test@test.com');
+        const user = await ValidateUserExists('FarrukhAdeel','test@test.com');
         expect(user).to.be.an('object');
         await DestroyDummyUser(test);
     })
@@ -31,7 +31,6 @@ describe("User Test Suite",()=>{
         await DestroyDummyUser(test);
         }
     })
-
     it('should throw an error because only 1 arg was passed to see if user exists', async ()=>{
         let test = null;
         try{
