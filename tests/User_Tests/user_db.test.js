@@ -1,6 +1,15 @@
 const {expect} = require("chai");
-const {UsernameExists, EmailExists} = require('../../Services/Users/User_DB');
+const {UsernameExists, EmailExists, CreateUser} = require('../../Services/Users/User_DB');
 const db = require('../../models');
+
+/*let test_user = {
+    first_name: 'test',
+    last_name: 'test',
+    username: 'test_test',
+    email: 'test@test.com',
+    password: 'test_test',
+
+}*/
 describe("User DB Test Suite",()=>{
     it('should see if a username exists in db',async ()=>{
         const check = await UsernameExists('');
@@ -45,6 +54,44 @@ describe("User DB Test Suite",()=>{
         expect(check).to.be.an('object');
         await DestroyDummyUser(test) ;
     });
+
+    it('should create a new user', async ()=>{
+        const first_name = 'test';
+        const last_name = 'test';
+        const email = 'test@test.com';
+        const username = 'test_test';
+        const password = 'test_test';
+        const permission_id = 1;
+
+        const args = {first_name, last_name, username, email, password, permission_id}
+        const user = await CreateUser(args);
+        //destroy user instance in database because its a test,
+        await  user.destroy({force:true,})
+        expect(user).to.be.an('object');
+        expect(user.first_name).to.equal(first_name);
+        expect(user.last_name).to.equal(last_name);
+        expect(user.username).to.equal(username);
+        expect(user.email).to.equal(email);
+        expect(user.password).to.equal(password);
+        expect(user.permission_id).to.equal(permission_id);
+    });
+
+    it ('should throw an error because no username was passed', async()=>{
+       try{
+           const first_name= 'test';
+           const last_name = 'test';
+           const email = 'test@test.com';
+           const username = 'test_test';
+           const password = 'test_test';
+           const permission_id = 1;
+           const user = await CreateUser({first_name,last_name, email, password, permission_id});
+       }catch(err){
+           expect(err).to.be.an('Error');
+           expect(err.message).to.equal("Invalid argument: username");
+
+       }
+    })
+
 });
 //helpers functions
 async function CreateDummyUser(){
