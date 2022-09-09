@@ -28,9 +28,8 @@ router.post('/', asyncHandler(async (req, res)=>{
             presence:true,
             email:true,
         },
-
     };
-    const {first_name, last_name, username, password,email} = req.body;
+    const {first_name, last_name, username, password,email,permission_id} = req.body;
     const validation = validate({first_name, last_name, username, password,email}, constraints);
     if(validation){
        return  res.status(400).json({error:validation});
@@ -46,6 +45,8 @@ router.post('/', asyncHandler(async (req, res)=>{
         }
 
     }
+    const new_user =  await User.CreateNewUser({first_name, last_name, username, email, password, permission_id,});
+    res.status(200).send({new_user});
 }));
 module.exports = router;
 
