@@ -16,7 +16,6 @@ async function ValidateUserExists(username, email){
     if(taken_valid_username && taken_valid_email) return  taken_valid_username;
     return null;
 }
-
 module.exports = {
     ValidateUserExists,
 };
