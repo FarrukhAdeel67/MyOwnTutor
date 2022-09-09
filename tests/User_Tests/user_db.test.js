@@ -90,7 +90,7 @@ describe("User DB Test Suite",()=>{
            expect(err.message).to.equal("Invalid argument: username");
 
        }
-    })
+    });
     it ('should throw an error because no first_name is passed', async()=>{
         try{
 
@@ -105,7 +105,7 @@ describe("User DB Test Suite",()=>{
             expect(err.message).to.equal("Invalid argument: first_name");
 
         }
-    })
+    });
     it ('should throw an error because no last_name is passed', async()=>{
         try{
 
@@ -120,7 +120,7 @@ describe("User DB Test Suite",()=>{
             expect(err.message).to.equal("Invalid argument: last_name");
 
         }
-    })
+    });
     it ('should throw an error because no password is passed', async()=>{
         try{
 
@@ -136,7 +136,7 @@ describe("User DB Test Suite",()=>{
             expect(err.message).to.equal("Invalid argument: password");
 
         }
-    })
+    });
     it ('should throw an error because no email is passed', async()=>{
         try{
             const first_name = 'test';
@@ -150,7 +150,7 @@ describe("User DB Test Suite",()=>{
             expect(err.message).to.equal("Invalid argument: email");
 
         }
-    })
+    });
     it ('should create a user and assign them permission id of 2 as default.', async()=>{
 
             const first_name = 'test';
@@ -169,7 +169,7 @@ describe("User DB Test Suite",()=>{
             expect(user.password).to.equal(password);
             expect(user.permission_id).to.equal(2);
 
-    })
+    });
 });
 //helpers functions
 async function CreateDummyUser(){
