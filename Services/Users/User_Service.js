@@ -1,7 +1,8 @@
 const {
     UsernameExists,
     EmailExists,
-    CreateUser} = require('./User_DB');
+    CreateUser,
+    FindUserByUserId,} = require('./User_DB');
 
 async function ValidateUserExists(username, email){
     if(!username || !email ){
@@ -23,7 +24,11 @@ async function ValidateUserExists(username, email){
 async function CreateNewUser(args){
     return await CreateUser(args)
 }
+async function FindUser(user_id){
+    return FindUserByUserId(user_id);
+}
 module.exports = {
     ValidateUserExists,
     CreateNewUser,
+    FindUser,
 };
