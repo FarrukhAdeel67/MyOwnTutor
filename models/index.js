@@ -1,30 +1,33 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
+const fs = require("fs");
+const path = require("path");
+const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
-const config  = require('../config/config');
- const db = {};
+const config = require("../config/config");
+const db = {};
 //console.log(config);
 // const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
-    const sequelize = new Sequelize("myowntutor", "root", "pps993icp956", {
-  dialect:'mysql',
-  host:"localhost",
+const sequelize = new Sequelize("myowntutor", "root", "pps993icp956", {
+  dialect: "mysql",
+  host: "localhost",
 });
 
-
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+fs.readdirSync(__dirname)
+  .filter((file) => {
+    return (
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+    );
   })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+  .forEach((file) => {
+    const model = require(path.join(__dirname, file))(
+      sequelize,
+      Sequelize.DataTypes
+    );
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
@@ -40,14 +43,12 @@ db.permission.hasMany(db.user);
 //Users
 db.user.belongsTo(db.permission);
 
-
 sequelize
-    .authenticate()
-    .then(()=>{
-      console.log("Connection has been established successfully.")
-    })
-    .catch((err)=>{
-      console.log("Unable to connect to the database.",err);
-
-    })
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((err) => {
+    console.log("Unable to connect to the database.", err);
+  });
 module.exports = db;
