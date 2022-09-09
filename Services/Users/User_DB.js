@@ -20,7 +20,7 @@ async  function UsernameExists(username){
 //returns user if email is already taken ,false otherwise,
 async function  EmailExists(email){
     if(email===null || email=== undefined){
-        throw new Error('No Username was passed as an argument')
+        throw new Error('No Email  was passed as an argument')
 
     }
     const user = await db.user.findOne({
@@ -32,6 +32,12 @@ async function  EmailExists(email){
     return null;
 }
 async function CreateUser(args){
+    if(!args.username) throw new Error('Invalid argument: username');
+    if(!args.first_name) throw new Error('Invalid argument: first_name');
+    if(!args.last_name) throw new Error('Invalid argument: last_name');
+    if(!args.password) throw new Error('Invalid argument: password');
+    if(!args.email) throw new Error('Invalid argument: email');
+    if(!args.permission_id) args.permission_id =2;
     const user = await db.user.create({
         first_name:args.first_name,
         last_name:args.last_name,
@@ -42,8 +48,6 @@ async function CreateUser(args){
     });
     return user;
 }
-
-
 module.exports = {
     UsernameExists,
     EmailExists,
