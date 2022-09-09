@@ -34,6 +34,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 //ASSOCIATIONS
+
 //Permissions
 db.permission.hasMany(db.user);
 //Users
