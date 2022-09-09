@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) =>{
             isEmail:true,
         },
         permission_id:{
-            //fk in permission table.
+             //fk in permission table.
           type:DataTypes.INTEGER,
           allowNull:false,
           required:true,
