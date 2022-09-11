@@ -19,7 +19,7 @@ describe("User Test Suite", () => {
     expect(user).to.be.an("object");
     await DestroyDummyUser(test);
   });
-  it("should throw an error because no arg was passed to see if user exists", async () => {
+  it("should throw an error because no arg was passed to see if user exists.", async () => {
     let test = null;
     try {
       test = await CreateDummyUser();
