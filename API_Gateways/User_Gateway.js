@@ -40,6 +40,7 @@ router.post(
     if (validation) {
       return res.status(400).json({ error: validation });
     }
+    
     //forward user service
     const found_user = await User.ValidateUserExists(username, email);
     if (found_user) {
