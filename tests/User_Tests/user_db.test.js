@@ -13,8 +13,7 @@ const db = require("../../models");
     username: 'test_test',
     email: 'test@test.com',
     password: 'test_test',
-    permission_id: 2;
-
+    permission_id: 1;
 }*/
 describe("User DB Test Suite", () => {
   it("should see if a username exists in db", async () => {
