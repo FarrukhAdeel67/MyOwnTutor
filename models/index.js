@@ -6,7 +6,7 @@ const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
 const config = require("../config/config");
 const db = {};
- //console.log(config);
+//console.log(config);
 // const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
 const sequelize = new Sequelize("myowntutor", "root", "", {
   dialect: "mysql",
